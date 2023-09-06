@@ -1,7 +1,7 @@
 package services
 
 import (
-	"BdoEnchanceApi/models"
+	"EnchanceSimulator/models"
 	"bytes"
 	"encoding/json"
 	"fmt"
@@ -9,21 +9,21 @@ import (
 	"net/http"
 )
 
-// BdoService defines the interface that your service should implement
-type BdoService interface {
+// Market defines the interface that your service should implement
+type Market interface {
 	MakeHTTPPostRequest() ([]byte, error)
 }
-type LocalBdoMarketService struct {
-	models.BdoMarketServiceImpl
+type LocalMarketService struct {
+	models.MarketServiceImpl
 }
 
-// NewBdoMarketService is the constructor function for BdoMarketServiceImpl
-func NewBdoMarketService(config models.BdoMarketConfig) *models.BdoMarketServiceImpl {
-	return &models.BdoMarketServiceImpl{
+// NewMarketService is the constructor function for MarketServiceImpl
+func NewMarketService(config models.MarketConfig) *models.MarketServiceImpl {
+	return &models.MarketServiceImpl{
 		Config: config,
 	}
 }
-func (s LocalBdoMarketService) MakeHTTPPostRequest() ([]byte, error) {
+func (s LocalMarketService) MakeHTTPPostRequest() ([]byte, error) {
 	payload := map[string]interface{}{
 		"keytype":      0,
 		"maincategory": 10,
@@ -49,7 +49,12 @@ func (s LocalBdoMarketService) MakeHTTPPostRequest() ([]byte, error) {
 	if err != nil {
 		return nil, fmt.Errorf("error making request: %v", err)
 	}
-	defer resp.Body.Close()
+	defer func(Body io.ReadCloser) {
+		err := Body.Close()
+		if err != nil {
+
+		}
+	}(resp.Body)
 
 	responseBytes, err := io.ReadAll(resp.Body)
 	if err != nil {

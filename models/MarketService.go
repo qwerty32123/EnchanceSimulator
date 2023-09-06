@@ -1,5 +1,5 @@
 package models
 
-type BdoMarketServiceImpl struct {
-	Config BdoMarketConfig
+type MarketServiceImpl struct {
+	Config MarketConfig
 }

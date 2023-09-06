@@ -27,8 +27,8 @@ type JSONConfig struct {
 	VaultToken  string            `json:"VaultToken"`
 	UserAgent   string            `json:"UserAgent"`
 	ContentType string            `json:"ContentType"`
-	InputQueu   string            `json:"InputQueu"`
-	OutputQueu  string            `json:"InputQueu"`
+	InputQueu   string            `json:"QueuInput"`
+	OutputQueu  string            `json:"QueuOutput"`
 }
 
 var appConfig *JSONConfig
@@ -57,6 +57,12 @@ func GetConfig() *JSONConfig {
 
 func (jc *JSONConfig) GetAPIURL() string {
 	return jc.API
+}
+func (jc *JSONConfig) GetOutQueu() string {
+	return jc.InputQueu
+}
+func (jc *JSONConfig) GetInQueu() string {
+	return jc.OutputQueu
 }
 func (jc *JSONConfig) GetVaultApiUrl() string {
 	return jc.VaultAPIURL

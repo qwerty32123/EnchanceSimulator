@@ -1,6 +1,6 @@
 package models
 
-type BdoMarketConfig struct {
+type MarketConfig struct {
 	URL         string
 	UserAgent   string
 	ContentType string
