@@ -1,0 +1,22 @@
+version: '3'
+#main services product needs to run, redis as main in memory database, rabbimq to communicate with python huffman implementation vault to store all strings that dont need to be hardcoded
+services:
+  vault:
+    image: vault:1.13.3
+    environment:
+      - VAULT_DEV=1
+    ports:
+      - "8200:8200"
+    cap_add:
+      - IPC_LOCK
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+  rabbitmq:
+    image: rabbitmq:3.12-management
+    ports:
+      - "5672:5672"  # Standard port
+      - "15672:15672"  # Management UI

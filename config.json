@@ -1,0 +1,20 @@
+{
+  "API": "https://secret/Trademarket/GetWorldMarketHotList",
+  "REGION": {
+    "EU": "Europe",
+    "NA": "North America"
+  },
+  "LANGUAGE": ["EN", "DE", "FR"],
+  "ENDPOINTS": {
+    "MARKET": "/market",
+    "ITEMS": "/items"
+  },
+  "RabbitMQURL": "amqp://xxx:xxx@localhost:5672/",
+  "VaultAPIURL": "https://vault.example.com",
+  "VaultToken": "your_vault_token_here",
+  "UserAgent": "Test",
+  "ContentType": "application/json",
+  "QueuInput": "Input",
+  "QueuOutput": "Output"
+
+}
